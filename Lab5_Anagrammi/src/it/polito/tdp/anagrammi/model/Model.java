@@ -20,19 +20,19 @@ public class Model {
 	 */
 	public List<Anagramma> anagrammizza(String parola) {
 		// i controlli li lascio al pubblico
-		
+
 		AnagrammaDAO dao = new AnagrammaDAO();
 
 		anagrammi = new ArrayList<String>();
 
 		magicFunction(parola, "");
-		
+
 		List<Anagramma> res = new ArrayList<>();
-		
+
 		for (String a : anagrammi) {
 //			System.out.format("Controllo la correttezza di: %s\n", a);
 
-			if (dao.isCorrect(a)) 
+			if (dao.isCorrect(a))
 				res.add(new Anagramma(a, true));
 			else
 				res.add(new Anagramma(a, false));
