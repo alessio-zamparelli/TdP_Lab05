@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.anagrammi.controller.AnagrammiController">
    <top>
       <Label text="Lab5_Anagrammi" BorderPane.alignment="CENTER">
@@ -25,14 +24,21 @@
                <children>
                   <TextField fx:id="txtParola" onAction="#doCalcolaAnagramma" />
                   <Button mnemonicParsing="false" onAction="#doCalcolaAnagramma" text="Calcola Anagrammi" />
+                  <Label fx:id="lblnTot" text="0 totali" />
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </HBox>
-            <Label text="Anagrammi Corretti" />
+            <Label text="Anagrammi Corretti">
+               <graphic>
+                  <Label fx:id="lblnCorr" text="0 " />
+               </graphic></Label>
             <TextArea fx:id="txtCorrect" editable="false" />
-            <Label text="Anagrammi Errati" />
+            <Label text="Anagrammi Errati">
+               <graphic>
+                  <Label fx:id="lblnWrong" text="0 " />
+               </graphic></Label>
             <TextArea fx:id="txtWrong" editable="false" />
          </children>
          <padding>

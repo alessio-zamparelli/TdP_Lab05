@@ -25,18 +25,48 @@ public class Model {
 
 		anagrammi = new ArrayList<String>();
 
+		System.out.format("Length: %d  ", parola.length());
+		long start = System.nanoTime();
 		magicFunction(parola, "");
+		long finish = System.nanoTime();
+		System.out.format("Search: %7.3f ms  ", (finish - start) / 1e6);
 
 		List<Anagramma> res = new ArrayList<>();
 
+		start = System.nanoTime();
 		for (String a : anagrammi) {
-//			System.out.format("Controllo la correttezza di: %s\n", a);
+//			System.out.format("Verify: %s\n", a);
 
 			if (dao.isCorrect(a))
 				res.add(new Anagramma(a, true));
 			else
 				res.add(new Anagramma(a, false));
 		}
+		finish = System.nanoTime();
+
+		System.out.format("Verify: %10.3f ms\n", (finish - start) / 1e6);
+
+		return res;
+
+	}
+
+	public List<Anagramma> anagrammizza2(String parola) {
+		// i controlli li lascio al pubblico
+
+		AnagrammaDAO dao = new AnagrammaDAO();
+
+		anagrammi = new ArrayList<String>();
+
+		System.out.format("Length: %d  ", parola.length());
+		long start = System.nanoTime();
+		magicFunction(parola, "");
+		long finish = System.nanoTime();
+		System.out.format("Search: %7.3f ms  ", (finish - start) / 1e6);
+
+		start = System.nanoTime();
+		List<Anagramma> res = dao.isCorrectImproved(anagrammi);
+		finish = System.nanoTime();
+		System.out.format("Verify: %10.3f ms\n", (finish - start) / 1e6);
 
 		return res;
 
@@ -61,7 +91,7 @@ public class Model {
 	}
 
 	public static void main(String[] args) {
-//		Model m = new Model();
+		Model m = new Model();
 //		List<String> res = m.anagrammizza("allakalbar");
 //		System.out.format("La stringa è lunga: %d, mi aspetto %d risultati\n", "allakalbar".length(),
 //				m.fact("allakalbar".length()));
@@ -71,6 +101,50 @@ public class Model {
 //		else
 //			System.out.println("Sbagliato");
 //		res.stream().forEach(a->System.out.println(a));
+
+		String parola;
+		List<Anagramma> res;
+
+		// v2
+		System.out.println("------V2------");
+		parola = "ciao";
+		res = m.anagrammizza2(parola);
+		parola = "ciaod";
+		res = m.anagrammizza2(parola);
+		parola = "ciaotr";
+		res = m.anagrammizza2(parola);
+		parola = "ciao";
+		res = m.anagrammizza2(parola);
+		parola = "ciaod";
+		res = m.anagrammizza2(parola);
+		parola = "ciaotr";
+		res = m.anagrammizza2(parola);
+		parola = "ciaonfd";
+		res = m.anagrammizza2(parola);
+		parola = "ciaeonfd";
+		res = m.anagrammizza2(parola);
+
+		// v1
+		System.out.println("------V1------");
+		parola = "ciao";
+		res = m.anagrammizza(parola);
+		parola = "ciaod";
+		res = m.anagrammizza(parola);
+		parola = "ciaotr";
+		res = m.anagrammizza(parola);
+		parola = "ciao";
+		res = m.anagrammizza(parola);
+		parola = "ciaod";
+		res = m.anagrammizza(parola);
+		parola = "ciaotr";
+		res = m.anagrammizza(parola);
+		parola = "ciaonfd";
+		res = m.anagrammizza(parola);
+		parola = "ciaeonfd";
+		res = m.anagrammizza(parola);
+
+		System.out.println("-----DONE-----");
+
 	}
 
 	private int fact(int number) {
