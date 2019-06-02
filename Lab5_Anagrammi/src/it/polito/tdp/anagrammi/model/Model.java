@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 import it.polito.tdp.anagrammi.DAO.AnagrammaDAO;
 
@@ -46,7 +47,7 @@ public class Model {
 
 		System.out.format("Verify: %10.3f ms\n", (finish - start) / 1e6);
 
-		return res;
+		return res.stream().distinct().collect(Collectors.toList());
 
 	}
 
@@ -68,7 +69,7 @@ public class Model {
 		finish = System.nanoTime();
 		System.out.format("Verify: %10.3f ms\n", (finish - start) / 1e6);
 
-		return res;
+		return res.stream().distinct().collect(Collectors.toList());
 
 	}
 

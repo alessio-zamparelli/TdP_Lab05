@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect {
-	static private final String jdbcUrl = "jdbc:mysql://localhost/dizionario?user=root&password=a123$456&serverTimezone=Europe/Rome";
+	static private final String jdbcUrl = "jdbc:mysql://localhost/dizionario?user=root&password=toor&serverTimezone=Europe/Rome";
 
 	public static Connection getConnection() {
 
